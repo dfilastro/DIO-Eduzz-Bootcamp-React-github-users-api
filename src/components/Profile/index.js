@@ -9,29 +9,45 @@ function Profile() {
 
   return (
     <S.Wrapper>
-      <S.WrapperImg src='https://avatars.githubusercontent.com/u/90292951?v=4' alt='User`s picture' />
+      <S.WrapperImg src={gitHub.user.avatar_url} alt='User`s picture' />
       <S.WrapperInfoUser>
         <div>
           <h1>{gitHub.user.name}</h1>
-          <S.WrapperStatusUsername>
+          <S.WrapperStatusGeneral>
             <h3>Username:</h3>
-            <a href='https://github.com/dfilastro' target='_blank' rel='noreferrer'>
-              DFilastro
+            <a href={gitHub.user.html_url} target='_blank' rel='noreferrer'>
+              {gitHub.user.login}
             </a>
-          </S.WrapperStatusUsername>
+          </S.WrapperStatusGeneral>
+          <S.WrapperStatusGeneral>
+            <h3>Company:</h3>
+            <>{gitHub.user.company}</>
+          </S.WrapperStatusGeneral>
+          <S.WrapperStatusGeneral>
+            <h3>Location:</h3>
+            <>{gitHub.user.location}</>
+          </S.WrapperStatusGeneral>
+          <S.WrapperStatusGeneral>
+            <h3>User Bio:</h3>
+            <>{gitHub.user.bio}</>
+          </S.WrapperStatusGeneral>
         </div>
         <S.WrapperStatusCount>
           <div>
             <h4>Followers</h4>
-            <span>3</span>
-          </div>
-          <div>
-            <h4>Starred</h4>
-            <span>3</span>
+            <span>{gitHub.user.followers}</span>
           </div>
           <div>
             <h4>Followings</h4>
-            <span>3</span>
+            <span>{gitHub.user.following}</span>
+          </div>
+          <div>
+            <h4>Gists</h4>
+            <span>{gitHub.user.public_gists}</span>
+          </div>
+          <div>
+            <h4>Repos</h4>
+            <span>{gitHub.user.public_repos}</span>
           </div>
         </S.WrapperStatusCount>
       </S.WrapperInfoUser>

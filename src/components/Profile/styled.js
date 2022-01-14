@@ -43,7 +43,7 @@ export const WrapperStatusCount = styled.div`
   }
 `;
 
-export const WrapperStatusUsername = styled.div`
+export const WrapperStatusGeneral = styled.div`
   display: flex;
   align-items: center;
   margin-top: 5px;

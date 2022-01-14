@@ -1,6 +1,8 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useCallback, useState } from 'react';
+import api from '../services/api';
 
 export const GitHubContext = createContext({
+  loading: false,
   user: {},
   repositories: [],
   starred: [],
@@ -8,23 +10,70 @@ export const GitHubContext = createContext({
 
 function GitProvider({ children }) {
   const [gitHub, setGitHub] = useState({
+    loading: false,
     user: {
       login: undefined,
-      name: 'Diego Filastro',
-      publicUrl: undefined,
+      name: undefined,
+      avatar_url: undefined,
+      html_url: undefined,
       blog: undefined,
       company: undefined,
       location: undefined,
+      bio: undefined,
       followers: 0,
       following: 0,
       public_gists: 0,
-      pubic_repo: 0,
+      public_repos: 0,
     },
     repositories: [],
     starred: [],
   });
 
-  const contextValue = { gitHub };
+  function getUser(userName) {
+    api
+      .get(`users/${userName}`)
+      .then(
+        ({
+          data: {
+            login,
+            name,
+            avatar_url,
+            html_url,
+            blog,
+            company,
+            location,
+            bio,
+            followers,
+            following,
+            public_gists,
+            public_repos,
+          },
+        }) => {
+          setGitHub((prevState) => ({
+            ...prevState,
+            user: {
+              login: login,
+              name: name,
+              avatar_url: avatar_url,
+              html_url: html_url,
+              blog: blog,
+              company: company,
+              location: location,
+              bio: bio,
+              followers: followers,
+              following: following,
+              public_gists: public_gists,
+              public_repos: public_repos,
+            },
+          }));
+        }
+      );
+  }
+
+  const contextValue = {
+    gitHub,
+    getUser: useCallback((userName) => getUser(userName), []),
+  };
 
   return <GitHubContext.Provider value={contextValue}>{children}</GitHubContext.Provider>;
 }

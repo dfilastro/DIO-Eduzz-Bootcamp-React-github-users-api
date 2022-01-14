@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from './components/layout/index';
-import Profile from './components/Profile/index';
+import Profile from './components/profile/index';
 import Repositories from './components/repositories/index';
 import { GlobalStyle } from './global/resetCSS';
 import GitProvider from './providers/git-provider';
