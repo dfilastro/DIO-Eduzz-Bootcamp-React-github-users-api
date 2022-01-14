@@ -1,16 +1,17 @@
 import React from 'react';
+import * as S from './styled';
 
 // import { Container } from './styles';
 
 function RepositoryItem({ name, linkToRepo, fullName }) {
   return (
-    <div>
+    <S.Wrapper>
       <h2>{name}</h2>
       <h4>full name:</h4>
       <a href={linkToRepo} target='_blank' rel='noreferrer'>
         {fullName}
       </a>
-    </div>
+    </S.Wrapper>
   );
 }
 

@@ -13,6 +13,7 @@ function GitProvider({ children }) {
     hasUser: false,
     loading: false,
     user: {
+      id: undefined,
       login: undefined,
       name: undefined,
       avatar_url: undefined,
@@ -38,6 +39,7 @@ function GitProvider({ children }) {
       .then(
         ({
           data: {
+            id,
             login,
             name,
             avatar_url,
@@ -56,6 +58,7 @@ function GitProvider({ children }) {
             ...prevState,
             hasUser: true,
             user: {
+              id: id,
               login: login,
               name: name,
               avatar_url: avatar_url,
@@ -77,9 +80,29 @@ function GitProvider({ children }) {
       });
   }
 
+  function getUserRepos(userName) {
+    api.get(`users/${userName}/repos`).then(({ data }) => {
+      setGitHub((prevState) => ({
+        ...prevState,
+        repositories: data,
+      }));
+    });
+  }
+
+  function getUserStarred(userName) {
+    api.get(`users/${userName}/starred`).then(({ data }) => {
+      setGitHub((prevState) => ({
+        ...prevState,
+        starred: data,
+      }));
+    });
+  }
+
   const contextValue = {
     gitHub,
     getUser: useCallback((userName) => getUser(userName), []),
+    getUserRepos: useCallback((userName) => getUserRepos(userName), []),
+    getUserStarred: useCallback((userName) => getUserStarred(userName), []),
   };
 
   return <GitHubContext.Provider value={contextValue}>{children}</GitHubContext.Provider>;

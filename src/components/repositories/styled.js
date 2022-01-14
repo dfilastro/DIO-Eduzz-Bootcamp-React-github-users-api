@@ -48,8 +48,15 @@ export const WrapperTabPanel = styled(TabPanel)`
   margin-top: -5px;
 
   &.is-selected {
-    display: block;
+    display: flex;
     background-color: black;
     color: white;
   }
+`;
+
+export const WrapperList = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
 `;

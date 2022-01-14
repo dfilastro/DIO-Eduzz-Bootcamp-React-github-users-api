@@ -3,6 +3,7 @@ import Layout from './components/layout/index';
 import Profile from './components/profile/index';
 import Repositories from './components/repositories/index';
 import useGitHub from './hooks/git-hooks';
+import NoSearch from './components/no search/index';
 
 function App() {
   const { gitHub } = useGitHub();
@@ -20,7 +21,7 @@ function App() {
           )}
         </>
       ) : (
-        <div>Non user searched</div>
+        <NoSearch />
       )}
     </Layout>
   );
