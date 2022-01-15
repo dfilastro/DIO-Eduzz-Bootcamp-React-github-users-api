@@ -8,23 +8,26 @@ function Header() {
   const { getUser } = useGitHub();
   const [userNameForSearch, setUserNameForSearch] = useState();
 
-  function submitGetUser() {
+  function submitGetUser(e) {
+    e.preventDefault();
     if (!userNameForSearch) return;
     return getUser(userNameForSearch);
   }
 
   return (
     <header>
-      <S.Wrapper>
-        <input
-          type='text'
-          placeholder='Find a user...'
-          onChange={(event) => setUserNameForSearch(event.target.value)}
-        ></input>
-        <button type='submit' onClick={submitGetUser}>
-          <span>Buscar</span>
-        </button>
-      </S.Wrapper>
+      <form onSubmit={submitGetUser}>
+        <S.Wrapper>
+          <input
+            type='text'
+            placeholder='Find a user...'
+            onChange={(event) => setUserNameForSearch(event.target.value)}
+          ></input>
+          <button type='submit'>
+            <span>Buscar</span>
+          </button>
+        </S.Wrapper>
+      </form>
     </header>
   );
 }

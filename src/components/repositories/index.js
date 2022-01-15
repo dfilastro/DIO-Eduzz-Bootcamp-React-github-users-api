@@ -33,6 +33,7 @@ function Repositories() {
               ))}
             </S.WrapperList>
           </S.WrapperTabPanel>
+
           <S.WrapperTabPanel>
             <S.WrapperList>
               {gitHub.starred.map((item) => (

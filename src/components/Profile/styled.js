@@ -3,14 +3,17 @@ import styled from 'styled-components';
 export const Wrapper = styled.div`
   display: flex;
   align-items: flex-start;
+  margin-top: 20px;
+  max-width: 100%;
 `;
 
 export const WrapperInfoUser = styled.div`
   display: flex;
-  align-items: flex-start;
+  vertical-align: middle;
   flex-direction: column;
   justify-content: space-between;
-  height: 200px;
+  padding: 10px;
+  min-width: 70%;
 
   h1 {
     font-size: 32px;
@@ -25,6 +28,7 @@ export const WrapperInfoUser = styled.div`
   h4 {
     font-size: 16px;
     font-weight: bold;
+    width: 80px;
   }
 `;
 
@@ -35,11 +39,19 @@ export const WrapperImg = styled.img`
 `;
 
 export const WrapperStatusCount = styled.div`
+  max-width: 100%;
   display: flex;
   align-items: center;
+  justify-content: space-around;
+  margin-bottom: 20px;
+
   div {
     margin: 10px;
     text-align: center;
+  }
+
+  h4 {
+    max-width: 100px;
   }
 `;
 
@@ -53,7 +65,18 @@ export const WrapperStatusGeneral = styled.div`
   }
 
   a {
-    color: blue;
     font-size: 18px;
+
+    &:hover {
+      color: blue;
+    }
   }
+`;
+
+export const WrapperContainer = styled.div`
+  position: relative;
+  top: 50%;
+  vertical-align: middle;
+  width: 100%;
+  margin: auto;
 `;
